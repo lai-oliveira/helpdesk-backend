@@ -47,4 +47,20 @@ public class ChamadoDTO implements Serializable {
         nomeCliente = obj.getCliente().getNome();
     }
 
+    @Override
+    public String toString() {
+        return "ChamadoDTO{" +
+                "id=" + id +
+                ", dataAbertura=" + dataAbertura +
+                ", dataFechamento=" + dataFechamento +
+                ", prioridade=" + prioridade +
+                ", status=" + status +
+                ", titulo='" + titulo + '\'' +
+                ", observacoes='" + observacoes + '\'' +
+                ", tecnico=" + tecnico +
+                ", cliente=" + cliente +
+                ", nomeTecnico='" + nomeTecnico + '\'' +
+                ", nomeCliente='" + nomeCliente + '\'' +
+                '}';
+    }
 }

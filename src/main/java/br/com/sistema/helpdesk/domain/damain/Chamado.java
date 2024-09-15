@@ -66,4 +66,19 @@ public class Chamado implements Serializable {
     public int hashCode() {
         return Objects.hashCode(id);
     }
+
+    @Override
+    public String toString() {
+        return "Chamado{" +
+                "id=" + id +
+                ", dataAbertura=" + dataAbertura +
+                ", dataFechamento=" + dataFechamento +
+                ", prioridade=" + prioridade +
+                ", status=" + status +
+                ", titulo='" + titulo + '\'' +
+                ", observacoes='" + observacoes + '\'' +
+                ", tecnico=" + tecnico.getNome() +
+                ", cliente=" + cliente.getNome() +
+                '}';
+    }
 }
