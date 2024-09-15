@@ -1,5 +1,6 @@
 package br.com.sistema.helpdesk.resources.exceptions;
 
+import br.com.sistema.helpdesk.services.exceptions.DataIntegrityViolationException;
 import br.com.sistema.helpdesk.services.exceptions.ObjNotFoundExceptions;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,19 @@ public class ResourceExceptionHandler {
             error.setMessage(e.getMessage());
             error.setPath(request.getRequestURI());
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+        }
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<StandardError> dataIntegrityViolationException(DataIntegrityViolationException e, HttpServletRequest request) {
+        {
+            StandardError error = new StandardError();
+            error.setTimestamp(System.currentTimeMillis());
+            error.setStatus(HttpStatus.BAD_REQUEST.value());
+            error.setError("Violação de dados");
+            error.setMessage(e.getMessage());
+            error.setPath(request.getRequestURI());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST.value()).body(error);
         }
     }
 }
