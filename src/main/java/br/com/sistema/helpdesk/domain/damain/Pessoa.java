@@ -1,4 +1,4 @@
-package br.com.sistema.helpdesk.domain.enums.damain;
+package br.com.sistema.helpdesk.domain.damain;
 
 import br.com.sistema.helpdesk.domain.enums.Perfil;
 

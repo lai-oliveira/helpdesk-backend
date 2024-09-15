@@ -1,4 +1,4 @@
-package br.com.sistema.helpdesk.domain.enums.damain;
+package br.com.sistema.helpdesk.domain.damain;
 
 import java.util.ArrayList;
 import java.util.List;
