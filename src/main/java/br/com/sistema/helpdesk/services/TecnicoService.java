@@ -7,6 +7,7 @@ import br.com.sistema.helpdesk.repositories.PessoaRepository;
 import br.com.sistema.helpdesk.repositories.TecnicoRepository;
 import br.com.sistema.helpdesk.services.exceptions.DataIntegrityViolationException;
 import br.com.sistema.helpdesk.services.exceptions.ObjNotFoundExceptions;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -51,5 +52,15 @@ public class TecnicoService {
         if(obj.isPresent() && !Objects.equals(obj.get().getId(), objDTO.getId())){
             throw new DataIntegrityViolationException("Email já cadastrado. Id: " + obj.get().getId());
         }
+    }
+
+    public Tecnico update(Integer id, @Valid TecnicoDTO objDTO) {
+        objDTO.setId(id);
+        findById(id);
+        Tecnico oldObj;
+        validaPorcpfEEmail(objDTO);
+        oldObj = new Tecnico(objDTO);
+        return tecnicoRepository.save(oldObj);
+
     }
 }
