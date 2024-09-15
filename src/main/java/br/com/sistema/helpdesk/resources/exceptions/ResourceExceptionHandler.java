@@ -16,7 +16,6 @@ public class ResourceExceptionHandler {
 
     @ExceptionHandler(ObjNotFoundExceptions.class)
     public ResponseEntity<StandardError> standardErrorException(ObjNotFoundExceptions e, HttpServletRequest request) {
-        {
             StandardError error = new StandardError();
             error.setTimestamp(System.currentTimeMillis());
             error.setStatus(HttpStatus.NOT_FOUND.value());
@@ -24,12 +23,11 @@ public class ResourceExceptionHandler {
             error.setMessage(e.getMessage());
             error.setPath(request.getRequestURI());
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
-        }
+
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<StandardError> dataIntegrityViolationException(DataIntegrityViolationException e, HttpServletRequest request) {
-        {
             StandardError error = new StandardError();
             error.setTimestamp(System.currentTimeMillis());
             error.setStatus(HttpStatus.BAD_REQUEST.value());
@@ -37,12 +35,11 @@ public class ResourceExceptionHandler {
             error.setMessage(e.getMessage());
             error.setPath(request.getRequestURI());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST.value()).body(error);
-        }
+
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ValidationError> validationErrors(MethodArgumentNotValidException e, HttpServletRequest request) {
-        {
             ValidationError errors = new ValidationError();
             errors.setTimestamp(System.currentTimeMillis());
             errors.setStatus(HttpStatus.BAD_REQUEST.value());
@@ -54,6 +51,6 @@ public class ResourceExceptionHandler {
                 errors.addError(error.getField(), error.getDefaultMessage());
             }
             return ResponseEntity.status(HttpStatus.BAD_REQUEST.value()).body(errors);
-        }
+
     }
 }
