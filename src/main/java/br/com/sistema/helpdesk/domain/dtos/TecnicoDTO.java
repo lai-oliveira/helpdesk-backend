@@ -3,9 +3,11 @@ package br.com.sistema.helpdesk.domain.dtos;
 import br.com.sistema.helpdesk.domain.damain.Tecnico;
 import br.com.sistema.helpdesk.domain.enums.Perfil;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -15,13 +17,20 @@ import java.util.stream.Collectors;
 @Getter
 @Setter
 public class TecnicoDTO implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
 
-
     protected Integer id;
+    @NotNull(message = "O campo NOME é requerido")
     protected String nome;
+
+    @NotNull(message = "O campo CPF é requerido")
     protected String cpf;
+
+    @NotNull(message = "O campo EMAIL é requerido")
     protected String email;
+
+    @NotNull(message = "O campo SENHA é requerido")
     protected String senha;
     protected Set<Integer> perfis = new HashSet<>();
 
