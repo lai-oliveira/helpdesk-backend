@@ -1,6 +1,7 @@
 package br.com.sistema.helpdesk.services;
 
 import br.com.sistema.helpdesk.domain.damain.Tecnico;
+import br.com.sistema.helpdesk.domain.dtos.TecnicoDTO;
 import br.com.sistema.helpdesk.repositories.TecnicoRepository;
 import br.com.sistema.helpdesk.services.exceptions.ObjNotFoundExceptions;
 import org.springframework.stereotype.Service;
@@ -24,5 +25,11 @@ public class TecnicoService {
 
     public List<Tecnico> findAll() {
         return tecnicoRepository.findAll();
+    }
+
+    public Tecnico create(TecnicoDTO objDTO) {
+        objDTO.setId(null);
+        Tecnico obj = new Tecnico(objDTO);
+        return tecnicoRepository.save(obj);
     }
 }

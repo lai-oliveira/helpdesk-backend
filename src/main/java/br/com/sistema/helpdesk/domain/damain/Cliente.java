@@ -4,12 +4,18 @@ import br.com.sistema.helpdesk.domain.enums.Perfil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.io.Serial;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
 public class Cliente extends Pessoa {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @JsonIgnore
@@ -26,11 +32,4 @@ public class Cliente extends Pessoa {
         addPerfis(Perfil.CLIENTE);
     }
 
-    public List<Chamado> getChamados() {
-        return chamados;
-    }
-
-    public void setChamados(List<Chamado> chamados) {
-        this.chamados = chamados;
-    }
 }

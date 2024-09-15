@@ -10,7 +10,6 @@ import br.com.sistema.helpdesk.repositories.ChamadoRepository;
 import br.com.sistema.helpdesk.repositories.ClienteRepository;
 import br.com.sistema.helpdesk.repositories.TecnicoRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
