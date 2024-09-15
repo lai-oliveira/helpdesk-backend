@@ -1,7 +1,10 @@
 package br.com.sistema.helpdesk.resources;
 
 import br.com.sistema.helpdesk.domain.damain.Tecnico;
+import br.com.sistema.helpdesk.domain.dtos.TecnicoDTO;
 import br.com.sistema.helpdesk.services.TecnicoService;
+import br.com.sistema.helpdesk.services.exceptions.ObjNotFoundExceptions;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,12 +22,9 @@ public class TecnicoResource {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Tecnico> findById(@PathVariable Integer id) {
-        try {
-            Tecnico tecnico = tecnicoService.findById(id);
-            return ResponseEntity.ok().body(tecnico);
-        }catch (Exception e) {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<TecnicoDTO> findById(@PathVariable Integer id) {
+        Tecnico tecnico = tecnicoService.findById(id);
+        return ResponseEntity.ok().body(new TecnicoDTO(tecnico));
+
     }
 }

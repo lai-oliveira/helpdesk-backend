@@ -2,6 +2,7 @@ package br.com.sistema.helpdesk.services;
 
 import br.com.sistema.helpdesk.domain.damain.Tecnico;
 import br.com.sistema.helpdesk.repositories.TecnicoRepository;
+import br.com.sistema.helpdesk.services.exceptions.ObjNotFoundExceptions;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -17,6 +18,6 @@ public class TecnicoService {
 
     public Tecnico findById(Integer id) {
         Optional<Tecnico> obj = tecnicoRepository.findById(id);
-        return obj.orElse(null);
+        return obj.orElseThrow(() -> new ObjNotFoundExceptions("Objeto não encontrado. Id: " + id));
     }
 }
