@@ -1,5 +1,6 @@
 package br.com.sistema.helpdesk.domain.damain;
 
+import br.com.sistema.helpdesk.domain.dtos.ChamadoDTO;
 import br.com.sistema.helpdesk.domain.enums.Prioridade;
 import br.com.sistema.helpdesk.domain.enums.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
