@@ -8,9 +8,11 @@ import br.com.sistema.helpdesk.domain.enums.Prioridade;
 import br.com.sistema.helpdesk.domain.enums.Status;
 import br.com.sistema.helpdesk.repositories.ChamadoRepository;
 import br.com.sistema.helpdesk.services.exceptions.ObjNotFoundExceptions;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,6 +45,14 @@ public class ChamadoService {
         return chamadoRepository.save(newChamado(objDTO));
     }
 
+    public Chamado update(Integer id, @Valid ChamadoDTO objDTO) {
+        objDTO.setId(id);
+        Chamado oldObj = findById(id);
+        oldObj = newChamado(objDTO);
+        return chamadoRepository.save(oldObj);
+
+    }
+
     private Chamado newChamado(ChamadoDTO objDTO) {
         Tecnico tecnico = tecnicoService.findById(objDTO.getTecnico());
         Cliente cliente = clienteService.findById(objDTO.getCliente());
@@ -50,6 +60,11 @@ public class ChamadoService {
         Chamado chamado = new Chamado();
         if (objDTO.getId() != null){
             chamado.setId(objDTO.getId());
+        }
+
+        if(objDTO.getStatus().equals(2)){
+            //Data atual de encerramento do chamado
+            chamado.setDataFechamento(LocalDate.now());
         }
 
         chamado.setTecnico(tecnico);
@@ -60,4 +75,6 @@ public class ChamadoService {
         chamado.setObservacoes(objDTO.getObservacoes());
         return chamado;
     }
+
+
 }
