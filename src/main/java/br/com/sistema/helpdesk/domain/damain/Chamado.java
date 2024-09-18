@@ -1,23 +1,25 @@
 package br.com.sistema.helpdesk.domain.damain;
 
-import br.com.sistema.helpdesk.domain.dtos.ChamadoDTO;
+import java.io.Serializable;
+import java.time.LocalDate;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 import br.com.sistema.helpdesk.domain.enums.Prioridade;
 import br.com.sistema.helpdesk.domain.enums.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.io.Serial;
-import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.Objects;
 
 @Entity
 @Getter
 @Setter
 public class Chamado implements Serializable {
-    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -26,9 +28,9 @@ public class Chamado implements Serializable {
 
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataAbertura = LocalDate.now();
-
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataFechamento;
+
     private Prioridade prioridade;
     private Status status;
     private String titulo;
@@ -43,9 +45,12 @@ public class Chamado implements Serializable {
     private Cliente cliente;
 
     public Chamado() {
+        super();
     }
 
-    public Chamado(Integer id, Prioridade prioridade, Status status, String titulo, String observacoes, Tecnico tecnico, Cliente cliente) {
+    public Chamado(Integer id, Prioridade prioridade, Status status, String titulo, String observacoes, Tecnico tecnico,
+                   Cliente cliente) {
+        super();
         this.id = id;
         this.prioridade = prioridade;
         this.status = status;
@@ -57,29 +62,28 @@ public class Chamado implements Serializable {
 
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Chamado chamado)) return false;
-        return Objects.equals(id, chamado.id);
-    }
-
-    @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        return result;
     }
 
     @Override
-    public String toString() {
-        return "Chamado{" +
-                "id=" + id +
-                ", dataAbertura=" + dataAbertura +
-                ", dataFechamento=" + dataFechamento +
-                ", prioridade=" + prioridade +
-                ", status=" + status +
-                ", titulo='" + titulo + '\'' +
-                ", observacoes='" + observacoes + '\'' +
-                ", tecnico=" + tecnico.getNome() +
-                ", cliente=" + cliente.getNome() +
-                '}';
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Chamado other = (Chamado) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        return true;
     }
+
 }

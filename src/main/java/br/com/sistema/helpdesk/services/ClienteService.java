@@ -7,9 +7,9 @@ import br.com.sistema.helpdesk.repositories.PessoaRepository;
 import br.com.sistema.helpdesk.repositories.ClienteRepository;
 import br.com.sistema.helpdesk.services.exceptions.DataIntegrityViolationException;
 import br.com.sistema.helpdesk.services.exceptions.ObjNotFoundExceptions;
-import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;

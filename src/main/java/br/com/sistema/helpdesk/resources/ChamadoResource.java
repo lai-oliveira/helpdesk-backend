@@ -3,11 +3,11 @@ package br.com.sistema.helpdesk.resources;
 import br.com.sistema.helpdesk.domain.damain.Chamado;
 import br.com.sistema.helpdesk.domain.dtos.ChamadoDTO;
 import br.com.sistema.helpdesk.services.ChamadoService;
-import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;

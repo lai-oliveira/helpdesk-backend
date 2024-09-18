@@ -3,12 +3,12 @@ package br.com.sistema.helpdesk.resources.exceptions;
 import br.com.sistema.helpdesk.domain.damain.Cliente;
 import br.com.sistema.helpdesk.domain.dtos.ClienteDTO;
 import br.com.sistema.helpdesk.services.ClienteService;
-import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
